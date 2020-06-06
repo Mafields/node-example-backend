@@ -1,2 +1,11 @@
-# node-example-backend
-Example node express Api 
+# Example node express Api backend
+## Uses:
+* Nodejs 12
+* Babel
+* Winston
+
+## Pre configured:
+* Logging
+* Enviroment variable reading
+* Eslint
+* Babel
