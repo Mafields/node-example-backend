@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Node dependency map api ",
+    "version": "0.0.1"
+  },
+  "tags": [
+    {
+      "name": "/",
+      "description": "Operate api documentation"
+    },
+    {
+      "name": "/map",
+      "description": "Operate map data"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Retrieve this documentation",
+        "tags": [
+          "/"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": "this"
+              }
+            }
+          },
+          "404": {
+            "description": "The API documentation file does not exist or is unreachable"
+          }
+        }
+      }
+    },
+    "/map/": {
+      "get": {
+        "summary": "Get map data",
+        "tags": [
+          "/map/"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Id of saved data",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data for the id has been fetched",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Query data is malformed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MapDAta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1
+        }
+      }
+    }
+  }
+}

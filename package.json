@@ -1,0 +1,83 @@
+{
+  "name": "node-example-backend",
+  "description": "Example node express Api backend",
+  "author": {
+    "name": "https://github.com/Mafields"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/Mafields/node-example-backend",
+  "bugs": {
+    "url": "https://github.com/Mafields/node-example-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Mafields/node-example-backend.git"
+  },
+  "license": "AGPL-3.0+",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "engines": {
+    "node": "^12"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node ./dist/index",
+    "start:dev": "babel-node ./src/index",
+    "lint": "eslint ./src",
+    "lint:dev": "eslint ./src --fix",
+    "check-deps": "npm-check; exit 0",
+    "test": "npm run lint",
+    "dev": "SET NODE_ENV=development cross-env LOG_LEVEL=debug nodemon",
+    "dev:linux": "NODE_ENV=development cross-env LOG_LEVEL=debug nodemon",
+    "build": "babel src --source-maps --copy-files --delete-dir-on-start --out-dir=dist --minified",
+    "prod": "SET NODE_ENV=production npm run build && npm run start",
+    "prod:linux": "NODE_ENV=production npm run build && npm run start"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.3",
+    "http-status": "^1.4.2",
+    "moment": "^2.24.0",
+    "mongodb": "^3.5.3",
+    "node-fetch": "^2.6.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "babel-eslint": "^10.0.2",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.4.0",
+    "@natlibfi/eslint-config-melinda-backend": ">1.0.0-alpha.1",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^2.0.2",
+    "npm-check": "^5.9.0"
+  },
+  "eslintConfig": {
+    "extends": "@natlibfi/melinda-backend"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "12"
+          }
+        }
+      ]
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "npm run lint:dev && npm run start:dev",
+    "watch": [
+      "src/*"
+    ],
+    "ext": "js",
+    "delay": 2.5
+  }
+}
